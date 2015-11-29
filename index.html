@@ -4,8 +4,18 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body ng-app="cad">
+<!-- show cursor here -->
+
+<div ng-controller="ConsoleCtrl as console">
+    <button ng-click="console.click()">click me</button>
+    <div ng-repeat="log in console.logs track by $index" ng-bind="log"></div>
+</div>
+
+<!-- load all the scripts here -->
 <script type="text/javascript" src="vendor/raphael.js" charset="utf-8"></script>
+<script type="text/javascript" src="vendor/jquery-2.1.4.js" charset="utf-8"></script>
+<script type="text/javascript" src="vendor/angular.js" charset="utf-8"></script>
 <script type="text/javascript" src="bundle.js" charset="utf-8"></script>
 </body>
 </html>
