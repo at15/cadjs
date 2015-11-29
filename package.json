@@ -7,6 +7,7 @@
     "webpack": "^1.12.9"
   },
   "scripts": {
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "watch": "webpack --progress --colors --watch"
   }
 }
