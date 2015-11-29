@@ -1,0 +1,12 @@
+{
+  "name": "cadjs",
+  "version": "0.0.1",
+  "devDependencies": {
+    "css-loader": "^0.23.0",
+    "style-loader": "^0.13.0",
+    "webpack": "^1.12.9"
+  },
+  "scripts": {
+    "webpack": "webpack"
+  }
+}
