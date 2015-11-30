@@ -4,7 +4,8 @@
 module App.Services {
     export class Logger {
         static $inject = ['$rootScope'];
-        private $rootScope:ng.IScope;
+        //private $rootScope:ng.IScope;
+        private $rootScope;
         public data = [];
         private pingCount:number;
 

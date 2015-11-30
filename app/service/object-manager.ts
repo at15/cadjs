@@ -11,7 +11,8 @@ module App.Services {
         static $inject = ['Logger', '$rootScope'];
 
         private logger:Logger;
-        private $rootScope:ng.IScope;
+        //private $rootScope:ng.IScope;
+        private $rootScope;
 
 
         public objects = [];

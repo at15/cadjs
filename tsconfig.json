@@ -4,6 +4,7 @@
     "out": "build/bundle-ts.js"
   },
   "files": [
+    "cad/meta.ts",
     "cad/point.ts",
     "cad/line.ts",
     "cad/polygon.ts",
