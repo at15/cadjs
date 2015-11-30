@@ -44,12 +44,10 @@ module App.Services {
             this.canvas.on('mouse:down', function (options) {
                 me.mouseDownHandler(options);
             });
-        }
-
-        // TODO: this should not be used directly
-        public add(obj:any):void {
-            this.canvas.add(obj);
-            this.manager.add(obj);
+            // handle object select, show detail in object manager
+            this.canvas.on('object:selected', function (e) {
+                me.objectSelectHandler(e);
+            });
         }
 
         public isDrawing():boolean {
@@ -96,18 +94,8 @@ module App.Services {
 
         // TODO: move it to object manager
         protected makeLine(start:Point, end:Point) {
-            var line = new fabric.Line([
-                start.x,
-                start.y,
-                end.x,
-                end.y
-            ], {
-                fill: 'red',
-                stroke: 'red',
-                strokeWidth: 5,
-                selectable: false
-            });
-            this.canvas.add(line);
+            this.canvas.add(this.manager.createLine(start, end));
+            this.logger.debug('line add to canvas');
         }
 
         private mouseDownHandler(options):void {
@@ -139,9 +127,12 @@ module App.Services {
                     this.makeLine(previousPoint, currentPoint);
                 }
             }
-
-
         }
 
+        private objectSelectHandler(e):void {
+            var object = e.target;
+            console.log(object);
+            this.logger.debug('[select]' + object._cad_name);
+        }
     }
 }

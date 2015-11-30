@@ -5,6 +5,7 @@ module App.Services {
     import Logger = App.Services.Logger;
     import Point = Cad.Point;
     import ICircle = fabric.ICircle;
+    import ILine = fabric.ILine;
 
     export class ObjectManager {
         static $inject = ['Logger', '$rootScope'];
@@ -25,18 +26,32 @@ module App.Services {
         }
 
         // give the obj a name
-        public add(obj:any) {
+        protected add(obj:any, type:string) {
             var me = this;
             // FIXME: improve ts.d
             this.$rootScope.safeApply(function () {
                 me.counter++;
-                obj.name = 'id' + me.counter.toString();
+                obj._cad_name = 'id' + me.counter.toString();
+                obj._cad_type = type;
                 me.objects.push(obj);
             });
         }
 
-        public createLine() {
-
+        public createLine(start:Point, end:Point):ILine {
+            var line = new fabric.Line([
+                start.x,
+                start.y,
+                end.x,
+                end.y
+            ], {
+                fill: 'red',
+                stroke: 'red',
+                strokeWidth: 5
+                //selectable: false
+            });
+            this.add(line, 'line');
+            this.logger.debug('[create][line]');
+            return line;
         }
 
         public createTempCircle(point:Point):ICircle {
@@ -50,6 +65,7 @@ module App.Services {
                 stroke: '#666',
                 selectable: false
             });
+            this.logger.debug('[create][circle][tmp]');
             this.tempPoints.push(c);
             return c;
         }

@@ -32,9 +32,17 @@
             length: {{manager.current.len}}
         </div>
     </div>
-    <div class="object-list">
-        <div ng-repeat="obj in manager.objects track by $index" ng-bind="obj.name"></div>
-    </div>
+    <div>All Objects</div>
+    <table class="object-list">
+        <tr>
+            <td>name</td>
+            <td>type</td>
+        </tr>
+        <tr ng-repeat="obj in manager.objects track by $index">
+            <td ng-bind="obj._cad_name"></td>
+            <td ng-bind="obj._cad_type"></td>
+        </tr>
+    </table>
     <div>
 
     </div>
