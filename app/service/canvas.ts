@@ -5,10 +5,6 @@ module App.Services {
         static $inject = ['Logger'];
 
         private logger:Logger;
-        //private paper:RaphaelPaper;
-        //private paperId = "paper";
-        //private paperWidth = 500;
-        //private paperHeight = 500;
 
         private canvasId = "canvas";
         private canvasWidth = 500;
@@ -17,18 +13,11 @@ module App.Services {
 
         constructor(logger:Logger) {
             this.logger = logger;
-            this.logger.log('canvas service init');
+            this.logger.log('canvas service initializing ... ');
 
-            //// init the real canvas
-            //this.paper = Raphael(document.getElementById(this.paperId),
-            //    this.paperWidth, this.paperHeight);
-            //// TODO: check if the logger truly init
-            //this.logger.log('paper init');
-
-            // TODO: change the size of the canvas
             this.canvas = new fabric.Canvas(this.canvasId,
                 {width: this.canvasWidth, height: this.canvasHeight});
-            this.logger.log('canvas init');
+            this.logger.log('canvas created ');
 
             // create a rectangle object
             var rect = new fabric.Rect({
