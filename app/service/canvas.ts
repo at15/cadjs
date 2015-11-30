@@ -7,6 +7,7 @@ module App.Services {
     import Polygon = Cad.Polygon;
     import Point = Cad.Point;
     import ICircleStatic = fabric.ICircleStatic;
+    import Circle = fabric.Circle;
 
     export class Canvas {
         static $inject = ['Logger', 'ObjectManager'];
@@ -25,7 +26,6 @@ module App.Services {
 
         // temp vars
         private currentPolygon:Polygon;
-        private tempPoints:Array<ICircleStatic> = [];
 
         constructor(logger:Logger, manager:ObjectManager) {
             var me = this;
@@ -39,9 +39,10 @@ module App.Services {
                 {width: this.canvasWidth, height: this.canvasHeight});
             this.logger.info('canvas created ');
 
+            // TODO: use lamda () => {}
             // bind all the even handle here, need have a wrapper to allow use real this
             this.canvas.on('mouse:down', function (options) {
-                me.mousedown(options);
+                me.mouseDownHandler(options);
             });
         }
 
@@ -80,27 +81,13 @@ module App.Services {
             this.cleanTempPoints();
         }
 
-        protected drawTempPoint(x:number, y:number):void {
-            var c = new fabric.Circle({
-                left: x,
-                top: y,
-                strokeWidth: 2,
-                radius: 5,
-                fill: '#fff',
-                stroke: '#666',
-                selectable: false
-            });
+        protected drawTempPoint(point:Point):void {
+            var c = this.manager.createTempCircle(point);
             this.canvas.add(c);
-            this.tempPoints.push(c);
         }
 
         protected cleanTempPoints() {
-            var points = this.tempPoints;
-            for (var i = 0; i < points.length; i++) {
-                // FIXME: blame on .d.ts or var points = xx?
-                points[i].remove();
-            }
-            this.logger.info('clean up all the temp points');
+            this.manager.cleanTemp();
         }
 
         protected makeLine(start:Point, end:Point) {
@@ -118,7 +105,7 @@ module App.Services {
             this.canvas.add(line);
         }
 
-        private mousedown(options):void {
+        private mouseDownHandler(options):void {
             // skip if we are not in drawing mode
             if (!this.isDrawing()) {
                 return;
@@ -138,7 +125,7 @@ module App.Services {
                 // add this point to polygon
                 this.currentPolygon.addPoint(currentPoint);
                 // draw a temp point to indicate
-                this.drawTempPoint(x, y);
+                this.drawTempPoint(currentPoint);
                 // draw the line
                 var previousPoint:Point = this.currentPolygon.getPreviousPoint();
                 if (previousPoint == null) {
