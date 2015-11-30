@@ -3,11 +3,14 @@
  */
 module App.Services {
     export class Logger {
+        static $inject = ['$rootScope'];
+        private $rootScope:ng.IScope;
         public data = [];
         private pingCount:number;
 
-        constructor() {
+        constructor($rootScope:ng.IScope) {
             this.pingCount = 0;
+            this.$rootScope = $rootScope;
         }
 
         public ping() {
@@ -16,7 +19,10 @@ module App.Services {
         }
 
         public log(msg:string) {
-            this.data.push(msg);
+            var me = this;
+            this.$rootScope.safeApply(function () {
+                me.data.push(msg);
+            });
         }
 
         public clear() {

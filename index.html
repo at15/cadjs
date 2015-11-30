@@ -7,19 +7,35 @@
 <body ng-app="cad">
 <!-- show cursor here -->
 <div id="canvas-con" ng-controller="CanvasCtrl as canvas">
-    <div id="tool-bar">
+    <canvas id="canvas">
+    </canvas>
+    <div class="tool-bar">
         <button ng-click="canvas.startDraw()">start</button>
         <button ng-click="canvas.stopDraw()">stop</button>
     </div>
-    <canvas id="canvas">
-
-    </canvas>
 </div>
 
 <!-- the object manager -->
 <div id="obj-manager-con" ng-controller="ObjectManagerCtrl as manager">
-    object manager
-    <div ng-repeat="obj in manager.objects track by $index" ng-bind="obj.name"></div>
+    <div>Object manager</div>
+    <div class="object-detail">
+        <div>current object </div>
+        <div>
+            x : {{manager.current.x}}
+        </div>
+        <div>
+            y : {{manager.current.y}}
+        </div>
+        <div>
+            length: {{manager.current.len}}
+        </div>
+    </div>
+    <div class="object-list">
+        <div ng-repeat="obj in manager.objects track by $index" ng-bind="obj.name"></div>
+    </div>
+    <div>
+
+    </div>
 </div>
 
 <div id="debug-con" ng-controller="DebugCtrl as debug">

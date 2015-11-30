@@ -70,6 +70,7 @@ module App.Services {
                 radius: radius
             });
             this.add(circle);
+            this.logger.log("adding circle");
         }
 
     }
