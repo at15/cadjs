@@ -23,7 +23,7 @@ module App.Services {
         public currentObject = null;
 
         // temp vars
-        private tempPoints:Array<Circle> = [];
+        private tempPoints = [];
 
         constructor(logger:Logger, $rootScope:ng.IScope) {
             this.logger = logger;
@@ -77,10 +77,8 @@ module App.Services {
         }
 
         public cleanTemp() {
-            // clean temp points
             var points = this.tempPoints;
             for (var i = 0; i < points.length; i++) {
-                // FIXME: blame on .d.ts or var points = xx?
                 points[i].remove();
             }
             this.logger.info('clean up all the temp points');

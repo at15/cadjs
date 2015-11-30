@@ -2,10 +2,9 @@
  * Created by gpl on 15/11/30.
  */
 module Cad {
-    export class Point {
+    export class Point{
         public x:number;
         public y:number;
-        public lines:Array<Line> = [];
 
         constructor(x:number, y:number) {
             this.x = x;
