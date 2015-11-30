@@ -4,6 +4,8 @@
   "devDependencies": {
     "css-loader": "^0.23.0",
     "style-loader": "^0.13.0",
+    "typescript": "^1.6.2",
+    "ts-loader": "^0.7.2",
     "webpack": "^1.12.9"
   },
   "scripts": {
