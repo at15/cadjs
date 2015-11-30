@@ -8,6 +8,7 @@ module App.Services {
     import Point = Cad.Point;
     import ICircleStatic = fabric.ICircleStatic;
     import Circle = fabric.Circle;
+    import Line = Cad.Line;
 
     export class Canvas {
         static $inject = ['Logger', 'ObjectManager'];
@@ -92,10 +93,11 @@ module App.Services {
             this.manager.cleanTemp();
         }
 
-        // TODO: return a wrapped line object
-        public makeLine(start:Point, end:Point) {
-            this.canvas.add(this.manager.createLine(start, end));
+        public makeLine(start:Point, end:Point):Line {
+            var line:Line = this.manager.createLine(start, end);
+            this.canvas.add(line.getUI());
             this.logger.debug('line add to canvas');
+            return line;
         }
 
         private mouseDownHandler(options):void {
@@ -128,12 +130,10 @@ module App.Services {
             }
 
             var object = e.target;
+            var metaObject = object._cad_meta;
             console.log(object);
-            this.logger.debug('[select]' + object._cad_name);
-            // active it in object manager
-            // when object manger click ok, tell canvas to update it.
-            // must use event to tell object manager ctrl
-            this.manager.activateObject(object, this);
+            this.logger.debug('[select]' + metaObject._cad_name);
+            this.manager.activateObject(metaObject, this);
         }
     }
 }

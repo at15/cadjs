@@ -30,10 +30,12 @@ module Cad {
             if (previousPoint == null) {
                 return;
             } else {
+                // TODO: put make line to a function, since close also use it
                 this.canvas.makeLine(previousPoint, point);
             }
         }
 
+        // TODO: get the returned line
         public close():void {
             this.canvas.makeLine(this.getLastPoint(), this.getFirstPoint());
         }

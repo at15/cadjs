@@ -4,8 +4,10 @@
 module App.Services {
     import Logger = App.Services.Logger;
     import Point = Cad.Point;
+    import Line = Cad.Line;
     import ICircle = fabric.ICircle;
-    import ILine = fabric.ILine;
+    import Line = Cad.Line;
+
 
     export class ObjectManager {
         static $inject = ['Logger', '$rootScope'];
@@ -32,19 +34,22 @@ module App.Services {
         }
 
         // give the obj a name
-        protected add(obj:any, type:string) {
-            var me = this;
-            // FIXME: improve ts.d
-            this.$rootScope.safeApply(function () {
-                me.counter++;
-                obj._cad_name = 'id-' + me.counter.toString();
-                obj._cad_type = type;
-                me.objects.push(obj);
+        protected add(obj:any) {
+            this.$rootScope.safeApply(() => {
+                obj.setName(this.generateName());
+                // TODO: a hack to get the meta object
+                obj.getUI()._cad_meta = obj;
+                this.objects.push(obj);
             });
         }
 
-        public createLine(start:Point, end:Point):ILine {
-            var line = new fabric.Line([
+        protected generateName() {
+            this.counter++;
+            return 'id-' + this.counter.toString();
+        }
+
+        public createLine(start:Point, end:Point):Line {
+            var ui = new fabric.Line([
                 start.x,
                 start.y,
                 end.x,
@@ -53,9 +58,10 @@ module App.Services {
                 fill: 'red',
                 stroke: 'red',
                 strokeWidth: 5
-                //selectable: false
             });
-            this.add(line, 'line');
+            var line = new Line(start, end);
+            line.setUI(ui);
+            this.add(line);
             this.logger.debug('[create][line]');
             return line;
         }
