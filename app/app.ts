@@ -3,8 +3,9 @@
  */
 
 angular.module('cad', [])
-    .service('Logger',App.Services.Logger)
-    .service('Canvas',App.Services.Canvas)
+    .service('Logger', App.Services.Logger)
+    .service('ObjManager', App.Services.ObjectManager)
+    .service('Canvas', App.Services.Canvas)
     .controller('DebugCtrl', App.Controllers.DebugCtrl)
-    .controller('ObjManagerCtrl',App.Controllers.ObjManagerCtrl)
-    .controller('CanvasCtrl',App.Controllers.CanvasCtrl);
+    .controller('ObjectManagerCtrl', App.Controllers.ObjectManagerCtrl)
+    .controller('CanvasCtrl', App.Controllers.CanvasCtrl);
