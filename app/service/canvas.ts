@@ -5,6 +5,8 @@ module App.Services {
 
     import ICanvas = fabric.ICanvas;
     import Polygon = Cad.Polygon;
+    import Point = Cad.Point;
+    import ICircleStatic = fabric.ICircleStatic;
 
     export class Canvas {
         static $inject = ['Logger', 'ObjectManager'];
@@ -23,6 +25,7 @@ module App.Services {
 
         // temp vars
         private currentPolygon:Polygon;
+        private tempPoints:Array<ICircleStatic> = [];
 
         constructor(logger:Logger, manager:ObjectManager) {
             var me = this;
@@ -76,6 +79,19 @@ module App.Services {
             this.drawingPolygon = false;
         }
 
+        public drawTempPoint(x:number, y:number):void {
+            var c = new fabric.Circle({
+                left: x,
+                top: y,
+                strokeWidth: 2,
+                radius: 5,
+                fill: '#fff',
+                stroke: '#666'
+            });
+            this.canvas.add(c);
+            this.tempPoints.push(c);
+        }
+
         private mousedown(options):void {
             // skip if we are not in drawing mode
             if (!this.isDrawing()) {
@@ -83,12 +99,18 @@ module App.Services {
             }
 
             var target = options.e;
+            var x = target.x;
+            var y = target.y;
+
             // target.x, target.y
-            this.logger.debug('x:' + target.x + ' y:' + target.y);
+            this.logger.debug('x:' + x + ' y:' + y);
 
             // determine we are drawing polygon or adding restriction
             if (this.isDrawingPolygon()) {
-                this.logger.debug('during polygon');
+                this.logger.debug('drawing polygon');
+                this.currentPolygon.addPoint(new Point(x, y));
+                // draw a temp point to
+                this.drawTempPoint(x, y);
 
             }
 
