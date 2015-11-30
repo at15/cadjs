@@ -4,7 +4,7 @@
 
 angular.module('cad', [])
     .service('Logger', App.Services.Logger)
-    .service('ObjManager', App.Services.ObjectManager)
+    .service('ObjectManager', App.Services.ObjectManager)
     .service('Canvas', App.Services.Canvas)
     .controller('DebugCtrl', App.Controllers.DebugCtrl)
     .controller('ObjectManagerCtrl', App.Controllers.ObjectManagerCtrl)
