@@ -5,6 +5,7 @@ module Cad {
     export class Point {
         public x:number;
         public y:number;
+        public lines:Array<Line> = [];
 
         constructor(x:number, y:number) {
             this.x = x;
