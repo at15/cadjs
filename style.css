@@ -1,9 +1,24 @@
-body{
+body {
     background-color: lightgray;
 }
 
-#canvas-container {
+#canvas-con {
+    float: left;
+
     width: 500px;
     height: 500px;
+
     border: 1px solid #aaa;
+    background-color: black;
+}
+
+#debug-con {
+    float: left;
+
+    width: 300px;
+    height: 500px;
+    overflow: auto;
+
+    color: #cfcfcf;
+    background-color: #071f27;
 }

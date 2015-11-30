@@ -6,7 +6,7 @@
 </head>
 <body ng-app="cad">
 <!-- show cursor here -->
-<div id="canvas-container">
+<div id="canvas-con">
 
 </div>
 
@@ -15,9 +15,19 @@
 
 </div>
 
-<div ng-controller="DebugCtrl as debug">
-    <button ng-click="debug.ping()">ping</button>
-    {{debug.title}}
+<div id="debug-con" ng-controller="DebugCtrl as debug">
+    <!--<button ng-click="debug.ping()">ping</button>-->
+    <!--{{debug.title}}-->
+    <div>
+        <button ng-click="debug.clear()">clear</button>
+        <label for="filter">filter</label>
+        <input type="text" ng-model="debug.filterWord" id="filter">
+    </div>
+
+    {{debug.filterWord}}
+    {{debug.logs}}
+
+    <div ng-repeat="log in debug.logs | filter:debug.filterWord track by $index " ng-bind="log"></div>
 </div>
 
 <!--<div ng-controller="ConsoleCtrl as console">-->
