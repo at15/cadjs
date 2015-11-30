@@ -16,6 +16,7 @@ module App.Services {
         private canvas:ICanvas;
 
         constructor(logger:Logger, manager:ObjectManager) {
+            var me = this;
             this.logger = logger;
             this.logger.log('canvas service initializing ... ');
 
@@ -27,17 +28,19 @@ module App.Services {
             this.logger.log('canvas created ');
 
             // bind all the even handle here
-            this.canvas.on('mouse:down', this.mousedown);
+            this.canvas.on('mouse:down', function (options) {
+                me.mousedown(options, this);
+            });
         }
 
         public add(obj:any) {
-            console.log('I am adding ... ');
+            //console.log('I am adding ... ');
             this.canvas.add(obj);
-            console.log(this.manager);
-            //this.manager.add(obj);
+            //console.log(this.manager);
+            this.manager.add(obj);
         }
 
-        private mousedown(options) {
+        private mousedown(options, canvas) {
             var target = options.e;
             console.log(target);
             // draw a circle
@@ -54,6 +57,7 @@ module App.Services {
             console.log(this.manager);
             //this.manager.add(circle);
             this.add(circle);
+            console.log(this);
         }
 
     }

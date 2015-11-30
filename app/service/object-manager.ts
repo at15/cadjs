@@ -18,12 +18,13 @@ module App.Services {
 
         // TODO: trigger angular digest
         public add(obj:any) {
-            console.log('add to object manager!');
             var me = this;
-            me.counter++;
-            obj.name = 'id' + me.counter.toString();
-            me.objects.push(obj);
-            console.log(me.objects.length);
+            this.$rootScope.safeApply(function () {
+                me.counter++;
+                obj.name = 'id' + me.counter.toString();
+                me.objects.push(obj);
+                console.log(me.objects.length);
+            });
         }
 
         public createRect() {
