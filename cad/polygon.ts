@@ -2,13 +2,16 @@
  * Created by gpl on 15/11/30.
  */
 module Cad {
+    import Canvas = App.Services.Canvas;
     export class Polygon {
         // only used for auto close polygon
         private start:Point;
         private points:Array<Point> = [];
+        private canvas:Canvas;
 
-        constructor() {
+        constructor(canvas:Canvas) {
             this.start = null;
+            this.canvas = canvas;
         }
 
         public isEmpty():boolean {
@@ -19,11 +22,23 @@ module Cad {
             if (this.isEmpty()) {
                 this.start = point;
             }
-            // TODO: draw the line between points
             this.points.push(point);
+
+            // draw the lines
+            // TODO: store the lines or the points for further dev
+            var previousPoint:Point = this.getPreviousPoint();
+            if (previousPoint == null) {
+                return;
+            } else {
+                this.canvas.makeLine(previousPoint, point);
+            }
         }
 
-        public getPreviousPoint():Point {
+        public close():void {
+            this.canvas.makeLine(this.getLastPoint(), this.getFirstPoint());
+        }
+
+        protected getPreviousPoint():Point {
             if (this.points.length < 2) {
                 return null;
             }

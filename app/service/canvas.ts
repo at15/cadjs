@@ -69,14 +69,14 @@ module App.Services {
         public startPolygon() {
             this.startDrawing();
             this.drawingPolygon = true;
-            this.currentPolygon = new Polygon();
+            this.currentPolygon = new Polygon(this);
             this.cleanTempPoints();
         }
 
         public stopPolygon() {
             // draw last point
             // TODO: should through error when it is not a polygon
-            this.makeLine(this.currentPolygon.getLastPoint(), this.currentPolygon.getFirstPoint());
+            this.currentPolygon.close();
             // do the clean up
             this.stopDrawing();
             this.drawingPolygon = false;
@@ -92,8 +92,8 @@ module App.Services {
             this.manager.cleanTemp();
         }
 
-        // TODO: move it to object manager
-        protected makeLine(start:Point, end:Point) {
+        // TODO: return a wrapped line object
+        public makeLine(start:Point, end:Point) {
             this.canvas.add(this.manager.createLine(start, end));
             this.logger.debug('line add to canvas');
         }
@@ -115,17 +115,10 @@ module App.Services {
             if (this.isDrawingPolygon()) {
                 this.logger.debug('drawing polygon');
                 var currentPoint:Point = new Point(x, y);
-                // add this point to polygon
-                this.currentPolygon.addPoint(currentPoint);
                 // draw a temp point to indicate
                 this.drawTempPoint(currentPoint);
-                // draw the line
-                var previousPoint:Point = this.currentPolygon.getPreviousPoint();
-                if (previousPoint == null) {
-                    return;
-                } else {
-                    this.makeLine(previousPoint, currentPoint);
-                }
+                // add this point to polygon, polygon itself will handle draw line
+                this.currentPolygon.addPoint(currentPoint);
             }
         }
 
