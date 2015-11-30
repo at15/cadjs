@@ -27,5 +27,14 @@ module App.Controllers {
 
             this.canvas.add(rect);
         }
+
+        public startDraw():void {
+            this.canvas.setDrawing();
+        }
+
+        public stopDraw():void {
+            this.canvas.disableDrawing();
+        }
+
     }
 }

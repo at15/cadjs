@@ -15,6 +15,9 @@ module App.Services {
         private canvasHeight = 500;
         private canvas:ICanvas;
 
+        // flags
+        private drawing:boolean = false;
+
         constructor(logger:Logger, manager:ObjectManager) {
             var me = this;
             this.logger = logger;
@@ -27,18 +30,35 @@ module App.Services {
                 {width: this.canvasWidth, height: this.canvasHeight});
             this.logger.log('canvas created ');
 
-            // bind all the even handle here
+            // bind all the even handle here, need have a wrapper to allow use real this
             this.canvas.on('mouse:down', function (options) {
                 me.mousedown(options);
             });
         }
 
-        public add(obj:any) {
+        public add(obj:any):void {
             this.canvas.add(obj);
             this.manager.add(obj);
         }
 
-        private mousedown(options) {
+        public isDrawing():boolean {
+            return this.drawing;
+        }
+
+        public setDrawing():void {
+            this.drawing = true;
+        }
+
+        public disableDrawing():void{
+            this.drawing = false;
+        }
+
+        private mousedown(options):void {
+            // skip if we are not in drawing mode
+            if (!this.isDrawing()) {
+                return;
+            }
+
             var target = options.e;
             // console.log(target);
             // draw a circle

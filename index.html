@@ -7,9 +7,10 @@
 <body ng-app="cad">
 <!-- show cursor here -->
 <div id="canvas-con" ng-controller="CanvasCtrl as canvas">
-    <!--<div id="tool-bar">-->
-    <!--<button>line</button>-->
-    <!--</div>-->
+    <div id="tool-bar">
+        <button ng-click="canvas.startDraw()">start</button>
+        <button ng-click="canvas.stopDraw()">stop</button>
+    </div>
     <canvas id="canvas">
 
     </canvas>
