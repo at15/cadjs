@@ -49,7 +49,7 @@ module App.Services {
             this.drawing = true;
         }
 
-        public disableDrawing():void{
+        public disableDrawing():void {
             this.drawing = false;
         }
 
@@ -58,19 +58,10 @@ module App.Services {
             if (!this.isDrawing()) {
                 return;
             }
+            // detrmine we are drawing polygon or adding restriction
 
             var target = options.e;
-            // console.log(target);
-            // draw a circle
-            var radius = 20;
-            var circle = new fabric.Circle({
-                left: target.x - radius,
-                top: target.y - radius,
-                fill: 'white',
-                radius: radius
-            });
-            this.add(circle);
-            this.logger.log("adding circle");
+            // target.x, target.y
         }
 
     }
