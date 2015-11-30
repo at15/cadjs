@@ -4,24 +4,30 @@
 module App.Services {
     import Logger = App.Services.Logger;
     export class ObjectManager {
-        static $inject = ['Logger'];
+        static $inject = ['Logger', '$rootScope'];
         private logger:Logger;
+        private $rootScope:ng.IScope;
         public objects = [];
         private counter:number = 0;
 
-        constructor(logger:Logger) {
+        constructor(logger:Logger, $rootScope:ng.IScope) {
             this.logger = logger;
+            this.$rootScope = $rootScope;
             this.logger.log('object manager service init');
         }
 
         // TODO: trigger angular digest
         public add(obj:any) {
-            this.counter++;
-            obj.name = 'id' + this.counter.toString();
-            this.objects.push(obj);
+            var me = this;
+            this.$rootScope.safeApply(function () {
+                me.counter++;
+                obj.name = 'id' + me.counter.toString();
+                me.objects.push(obj);
+                console.log(me.objects.length);
+            });
         }
 
-        public createRect(){
+        public createRect() {
 
         }
     }
