@@ -4,6 +4,9 @@
     "out": "build/bundle-ts.js"
   },
   "files": [
+    "cad/point.ts",
+    "cad/line.ts",
+    "cad/polygon.ts",
     "app/service/logger.ts",
     "app/service/canvas.ts",
     "app/service/object-manager.ts",

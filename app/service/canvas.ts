@@ -1,8 +1,10 @@
 module App.Services {
     import Logger = App.Services.Logger;
     import ObjectManager = App.Services.ObjectManager;
+    import Polygon = Cad.Polygon;
 
     import ICanvas = fabric.ICanvas;
+    import Polygon = Cad.Polygon;
 
     export class Canvas {
         static $inject = ['Logger', 'ObjectManager'];
@@ -18,6 +20,9 @@ module App.Services {
         // flags
         private drawing:boolean = false;
         private drawingPolygon:boolean = false;
+
+        // temp vars
+        private currentPolygon:Polygon;
 
         constructor(logger:Logger, manager:ObjectManager) {
             var me = this;
@@ -60,8 +65,10 @@ module App.Services {
         }
 
         public startPolygon() {
-            this.startDrawing()
+            this.startDrawing();
             this.drawingPolygon = true;
+            this.currentPolygon = new Polygon();
+
         }
 
         public stopPolygon() {
@@ -79,9 +86,10 @@ module App.Services {
             // target.x, target.y
             this.logger.debug('x:' + target.x + ' y:' + target.y);
 
-            // detrmine we are drawing polygon or adding restriction
+            // determine we are drawing polygon or adding restriction
             if (this.isDrawingPolygon()) {
                 this.logger.debug('during polygon');
+
             }
 
 
