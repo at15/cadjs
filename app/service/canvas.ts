@@ -20,6 +20,7 @@ module App.Services {
             this.logger.log('canvas service initializing ... ');
 
             this.manager = manager;
+            console.log(manager);
 
             this.canvas = new fabric.Canvas(this.canvasId,
                 {width: this.canvasWidth, height: this.canvasHeight});
@@ -30,8 +31,10 @@ module App.Services {
         }
 
         public add(obj:any) {
+            console.log('I am adding ... ');
             this.canvas.add(obj);
-            this.manager.add(obj);
+            console.log(this.manager);
+            //this.manager.add(obj);
         }
 
         private mousedown(options) {
@@ -47,7 +50,9 @@ module App.Services {
                 fill: 'white',
                 radius: radius
             });
-
+            // FIXME: why manager is empty?
+            console.log(this.manager);
+            //this.manager.add(circle);
             this.add(circle);
         }
 
