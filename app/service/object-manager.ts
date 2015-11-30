@@ -14,6 +14,7 @@ module App.Services {
             this.logger.log('object manager service init');
         }
 
+        // TODO: trigger angular digest
         public add(obj:any) {
             this.counter++;
             obj.name = 'id' + this.counter.toString();

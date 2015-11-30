@@ -26,11 +26,29 @@ module App.Services {
             this.logger.log('canvas created ');
 
             // bind all the even handle here
+            this.canvas.on('mouse:down', this.mousedown);
         }
 
         public add(obj:any) {
-            this.manager.add(obj);
             this.canvas.add(obj);
+            this.manager.add(obj);
+        }
+
+        private mousedown(options) {
+            var target = options.e;
+            console.log(target);
+            // draw a circle
+
+            var radius = 20;
+
+            var circle = new fabric.Circle({
+                left: target.x - radius,
+                top: target.y - radius,
+                fill: 'white',
+                radius: radius
+            });
+
+            this.add(circle);
         }
 
     }
