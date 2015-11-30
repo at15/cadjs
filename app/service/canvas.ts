@@ -71,15 +71,17 @@ module App.Services {
             this.startDrawing();
             this.drawingPolygon = true;
             this.currentPolygon = new Polygon();
+            this.cleanTempPoints();
 
         }
 
         public stopPolygon() {
             this.stopDrawing();
             this.drawingPolygon = false;
+            this.cleanTempPoints();
         }
 
-        public drawTempPoint(x:number, y:number):void {
+        protected drawTempPoint(x:number, y:number):void {
             var c = new fabric.Circle({
                 left: x,
                 top: y,
@@ -90,6 +92,13 @@ module App.Services {
             });
             this.canvas.add(c);
             this.tempPoints.push(c);
+        }
+
+        protected cleanTempPoints(){
+            var points = this.tempPoints;
+            for(var i=0;i<points.length;i++){
+                points[i].remove();
+            }
         }
 
         private mousedown(options):void {

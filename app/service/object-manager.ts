@@ -13,7 +13,7 @@ module App.Services {
         constructor(logger:Logger, $rootScope:ng.IScope) {
             this.logger = logger;
             this.$rootScope = $rootScope;
-            this.logger.log('object manager service init');
+            this.logger.info('object manager service init');
         }
 
         // give the obj a name
