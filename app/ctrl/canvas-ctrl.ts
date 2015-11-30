@@ -14,6 +14,18 @@ module App.Controllers {
             this.canvas = canvas;
             this.logger = logger;
             this.logger.log('canvas ctrl init');
+
+            // create a rectangle object
+            var rect = new fabric.Rect({
+                left: 100,
+                top: 100,
+                fill: 'white',
+                width: 20,
+                height: 20,
+                angle: 45
+            });
+
+            this.canvas.add(rect);
         }
     }
 }

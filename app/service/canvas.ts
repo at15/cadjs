@@ -1,36 +1,36 @@
 module App.Services {
     import Logger = App.Services.Logger;
+    import ObjectManager = App.Services.ObjectManager;
+
     import ICanvas = fabric.ICanvas;
+
     export class Canvas {
-        static $inject = ['Logger'];
+        static $inject = ['Logger', 'ObjectManager'];
 
         private logger:Logger;
+        private manager:ObjectManager;
 
         private canvasId = "canvas";
         private canvasWidth = 500;
         private canvasHeight = 500;
         private canvas:ICanvas;
 
-        constructor(logger:Logger) {
+        constructor(logger:Logger, manager:ObjectManager) {
             this.logger = logger;
             this.logger.log('canvas service initializing ... ');
+
+            this.manager = manager;
 
             this.canvas = new fabric.Canvas(this.canvasId,
                 {width: this.canvasWidth, height: this.canvasHeight});
             this.logger.log('canvas created ');
 
-            // create a rectangle object
-            var rect = new fabric.Rect({
-                left: 100,
-                top: 100,
-                fill: 'white',
-                width: 20,
-                height: 20,
-                angle: 45
-            });
+            // bind all the even handle here
+        }
 
-            // "add" rectangle onto canvas
-            this.canvas.add(rect);
+        public add(obj:any) {
+            this.manager.add(obj);
+            this.canvas.add(obj);
         }
 
     }

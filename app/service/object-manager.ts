@@ -6,10 +6,22 @@ module App.Services {
     export class ObjectManager {
         static $inject = ['Logger'];
         private logger:Logger;
+        public objects = [];
+        private counter:number = 0;
 
         constructor(logger:Logger) {
             this.logger = logger;
             this.logger.log('object manager service init');
+        }
+
+        public add(obj:any) {
+            this.counter++;
+            obj.name = 'id' + this.counter.toString();
+            this.objects.push(obj);
+        }
+
+        public createRect(){
+
         }
     }
 }

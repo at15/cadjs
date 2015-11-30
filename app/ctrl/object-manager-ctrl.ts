@@ -5,10 +5,10 @@ module App.Controllers {
     import Logger = App.Services.Logger;
     import ObjectManager = App.Services.ObjectManager;
     export class ObjectManagerCtrl {
-        static $inject = ['Logger','ObjectManager'];
+        static $inject = ['Logger', 'ObjectManager'];
 
         public title = 'object manager';
-        public objects = ['a', 'b', 'c'];
+        public objects;
 
         private logger:Logger;
         private manager:ObjectManager;
@@ -17,6 +17,7 @@ module App.Controllers {
             console.log(logger.ping());
             this.logger = logger;
             this.manager = manager;
+            this.objects = this.manager.objects;
             this.logger.log('object manager ctrl init ');
         }
     }
