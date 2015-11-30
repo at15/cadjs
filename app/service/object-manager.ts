@@ -13,7 +13,9 @@ module App.Services {
         private logger:Logger;
         private $rootScope:ng.IScope;
 
+
         public objects = [];
+        // counter for generate id
         private counter:number = 0;
 
         // temp vars
@@ -31,7 +33,7 @@ module App.Services {
             // FIXME: improve ts.d
             this.$rootScope.safeApply(function () {
                 me.counter++;
-                obj._cad_name = 'id' + me.counter.toString();
+                obj._cad_name = 'id-' + me.counter.toString();
                 obj._cad_type = type;
                 me.objects.push(obj);
             });
@@ -78,6 +80,11 @@ module App.Services {
                 points[i].remove();
             }
             this.logger.info('clean up all the temp points');
+        }
+
+        public activateObject(obj:any, canvas:Canvas) {
+            this.logger.debug('[manager][activate] ' + obj._cad_name);
+            this.$rootScope.$broadcast('object.activate', obj);
         }
     }
 }

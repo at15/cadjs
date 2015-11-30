@@ -133,6 +133,10 @@ module App.Services {
             var object = e.target;
             console.log(object);
             this.logger.debug('[select]' + object._cad_name);
+            // active it in object manager
+            // when object manger click ok, tell canvas to update it.
+            // must use event to tell object manager ctrl
+            this.manager.activateObject(object, this);
         }
     }
 }
