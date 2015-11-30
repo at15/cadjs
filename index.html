@@ -16,7 +16,8 @@
 </div>
 
 <div ng-controller="DebugCtrl as debug">
-
+    <button ng-click="debug.ping()">ping</button>
+    {{debug.title}}
 </div>
 
 <!--<div ng-controller="ConsoleCtrl as console">-->
@@ -28,6 +29,6 @@
 <script type="text/javascript" src="vendor/raphael.js" charset="utf-8"></script>
 <script type="text/javascript" src="vendor/jquery-2.1.4.js" charset="utf-8"></script>
 <script type="text/javascript" src="vendor/angular.js" charset="utf-8"></script>
-<script type="text/javascript" src="bundle.js" charset="utf-8"></script>
+<script type="text/javascript" src="build/bundle.js" charset="utf-8"></script>
 </body>
 </html>
