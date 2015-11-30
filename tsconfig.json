@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "module": "commonjs"
+    "module": "commonjs",
+    "out": "build/bundle-ts.js"
   },
   "files": [
     "lib/app.ts",
