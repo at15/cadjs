@@ -16,14 +16,14 @@ module App.Services {
             this.logger.log('object manager service init');
         }
 
-        // TODO: trigger angular digest
+        // give the obj a name
         public add(obj:any) {
             var me = this;
+            // FIXME: improve ts.d
             this.$rootScope.safeApply(function () {
                 me.counter++;
                 obj.name = 'id' + me.counter.toString();
                 me.objects.push(obj);
-                console.log(me.objects.length);
             });
         }
 

@@ -29,35 +29,27 @@ module App.Services {
 
             // bind all the even handle here
             this.canvas.on('mouse:down', function (options) {
-                me.mousedown(options, this);
+                me.mousedown(options);
             });
         }
 
         public add(obj:any) {
-            //console.log('I am adding ... ');
             this.canvas.add(obj);
-            //console.log(this.manager);
             this.manager.add(obj);
         }
 
-        private mousedown(options, canvas) {
+        private mousedown(options) {
             var target = options.e;
-            console.log(target);
+            // console.log(target);
             // draw a circle
-
             var radius = 20;
-
             var circle = new fabric.Circle({
                 left: target.x - radius,
                 top: target.y - radius,
                 fill: 'white',
                 radius: radius
             });
-            // FIXME: why manager is empty?
-            console.log(this.manager);
-            //this.manager.add(circle);
             this.add(circle);
-            console.log(this);
         }
 
     }
