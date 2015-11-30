@@ -27,10 +27,12 @@ module App.Services {
 
         public info(msg:string):void {
             this.log('[info] ' + msg);
+            console.info(msg);
         }
 
         public debug(msg:string):void {
             this.log('[debug] ' + msg);
+            console.debug(msg);
         }
 
         public clear() {

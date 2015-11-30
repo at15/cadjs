@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>cad js</title>
 </head>
 <body ng-app="cad">
 <!-- show cursor here -->
@@ -12,6 +12,8 @@
     <div class="tool-bar">
         <button ng-click="canvas.startDraw()">start</button>
         <button ng-click="canvas.stopDraw()">stop</button>
+        <button ng-click="canvas.startPolygon()">start polygon</button>
+        <button ng-click="canvas.stopPolygon()">stop polygon</button>
     </div>
 </div>
 
@@ -19,7 +21,7 @@
 <div id="obj-manager-con" ng-controller="ObjectManagerCtrl as manager">
     <div>Object manager</div>
     <div class="object-detail">
-        <div>current object </div>
+        <div>current object</div>
         <div>
             x : {{manager.current.x}}
         </div>

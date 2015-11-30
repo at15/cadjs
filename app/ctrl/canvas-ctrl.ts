@@ -29,12 +29,21 @@ module App.Controllers {
         }
 
         public startDraw():void {
-            this.canvas.setDrawing();
+            this.canvas.startDrawing()
         }
 
         public stopDraw():void {
-            this.canvas.disableDrawing();
+            this.canvas.stopDrawing();
         }
 
+        public startPolygon():void {
+            this.logger.info('start drawing polygon, click first point');
+            this.canvas.startPolygon();
+        }
+
+        public stopPolygon():void {
+            this.logger.info('stop drawing polygon');
+            this.canvas.stopPolygon();
+        }
     }
 }

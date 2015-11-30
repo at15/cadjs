@@ -17,6 +17,7 @@ module App.Services {
 
         // flags
         private drawing:boolean = false;
+        private drawingPolygon:boolean = false;
 
         constructor(logger:Logger, manager:ObjectManager) {
             var me = this;
@@ -36,6 +37,7 @@ module App.Services {
             });
         }
 
+        // TODO: this should not be used directly
         public add(obj:any):void {
             this.canvas.add(obj);
             this.manager.add(obj);
@@ -45,12 +47,26 @@ module App.Services {
             return this.drawing;
         }
 
-        public setDrawing():void {
+        public startDrawing():void {
             this.drawing = true;
         }
 
-        public disableDrawing():void {
+        public stopDrawing():void {
             this.drawing = false;
+        }
+
+        public isDrawingPolygon():boolean {
+            return this.isDrawing() && this.drawingPolygon;
+        }
+
+        public startPolygon() {
+            this.startDrawing()
+            this.drawingPolygon = true;
+        }
+
+        public stopPolygon() {
+            this.stopDrawing();
+            this.drawingPolygon = false;
         }
 
         private mousedown(options):void {
@@ -58,11 +74,17 @@ module App.Services {
             if (!this.isDrawing()) {
                 return;
             }
-            // detrmine we are drawing polygon or adding restriction
 
             var target = options.e;
             // target.x, target.y
             this.logger.debug('x:' + target.x + ' y:' + target.y);
+
+            // detrmine we are drawing polygon or adding restriction
+            if (this.isDrawingPolygon()) {
+                this.logger.debug('during polygon');
+            }
+
+
         }
 
     }
