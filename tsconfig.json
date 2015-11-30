@@ -4,10 +4,10 @@
     "out": "build/bundle-ts.js"
   },
   "files": [
-    "lib/service/logger.ts",
-    "lib/ctrl/debug-ctrl.ts",
-    "lib/ctrl/obj-manager-ctrl.ts",
-    "lib/app.ts",
+    "app/service/logger.ts",
+    "app/ctrl/debug-ctrl.ts",
+    "app/ctrl/obj-manager-ctrl.ts",
+    "app/app.ts",
     "typings/tsd.d.ts"
   ]
 }
