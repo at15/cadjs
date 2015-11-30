@@ -23,6 +23,13 @@ module Cad {
             this.points.push(point);
         }
 
+        public getPreviousPoint():Point {
+            if(this.points.length < 2){
+                return null;
+            }
+            return this.points[this.points.length - 2];
+        }
+
         public getFirstPoint():Point {
             return this.points[0];
         }

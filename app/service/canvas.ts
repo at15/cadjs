@@ -72,7 +72,6 @@ module App.Services {
             this.drawingPolygon = true;
             this.currentPolygon = new Polygon();
             this.cleanTempPoints();
-
         }
 
         public stopPolygon() {
@@ -88,17 +87,35 @@ module App.Services {
                 strokeWidth: 2,
                 radius: 5,
                 fill: '#fff',
-                stroke: '#666'
+                stroke: '#666',
+                selectable: false
             });
             this.canvas.add(c);
             this.tempPoints.push(c);
         }
 
-        protected cleanTempPoints(){
+        protected cleanTempPoints() {
             var points = this.tempPoints;
-            for(var i=0;i<points.length;i++){
+            for (var i = 0; i < points.length; i++) {
+                // FIXME: blame on .d.ts or var points = xx?
                 points[i].remove();
             }
+            this.logger.info('clean up all the temp points');
+        }
+
+        protected makeLine(start:Point, end:Point) {
+            var line = new fabric.Line([
+                start.x,
+                start.y,
+                end.x,
+                end.y
+            ], {
+                fill: 'red',
+                stroke: 'red',
+                strokeWidth: 5,
+                selectable: false
+            });
+            this.canvas.add(line);
         }
 
         private mousedown(options):void {
@@ -117,10 +134,18 @@ module App.Services {
             // determine we are drawing polygon or adding restriction
             if (this.isDrawingPolygon()) {
                 this.logger.debug('drawing polygon');
-                this.currentPolygon.addPoint(new Point(x, y));
-                // draw a temp point to
+                var currentPoint:Point = new Point(x, y);
+                // add this point to polygon
+                this.currentPolygon.addPoint(currentPoint);
+                // draw a temp point to indicate
                 this.drawTempPoint(x, y);
-
+                // draw the line
+                var previousPoint:Point = this.currentPolygon.getPreviousPoint();
+                if (previousPoint == null) {
+                    return;
+                } else {
+                    this.makeLine(previousPoint, currentPoint);
+                }
             }
 
 
