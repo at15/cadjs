@@ -9,6 +9,7 @@ module App.Controllers {
 
         public title = 'object manager';
         public objects;
+        public active;
 
         private logger:Logger;
         private manager:ObjectManager;
@@ -16,12 +17,17 @@ module App.Controllers {
 
         constructor(logger:Logger, manager:ObjectManager, $scope:ng.IScope) {
             console.log(logger.ping());
+
+            var me = this;
+
             this.logger = logger;
             this.manager = manager;
             this.$scope = $scope;
             this.objects = this.manager.objects;
 
-            this.$scope.$on('object.activate', this.objectActivateHandler);
+            this.$scope.$on('object.activate', function (event:ng.IAngularEvent, obj:any) {
+                me.objectActivateHandler(obj);
+            });
 
 
             this.logger.info('object manager ctrl init ');
@@ -29,9 +35,14 @@ module App.Controllers {
 
         }
 
-        public objectActivateHandler(event:ng.IAngularEvent, obj:any) {
-            console.log('got obj!', obj);
-            console.log(arguments);
+        public objectActivateHandler(obj:any) {
+            ////console.log('got obj!', obj);
+            //var me = this;
+            //this.$scope.$apply(function () {
+            //    me.active = obj;
+            //});
+            ////console.log(arguments);
+            this.active = obj;
         }
     }
 }

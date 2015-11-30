@@ -130,6 +130,10 @@ module App.Services {
         }
 
         private objectSelectHandler(e):void {
+            if (this.isDrawing()) {
+                return;
+            }
+
             var object = e.target;
             console.log(object);
             this.logger.debug('[select]' + object._cad_name);

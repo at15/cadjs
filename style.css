@@ -37,12 +37,16 @@ body {
     background-color: #1B6D88;
 }
 
-#obj-manager-con > .object-detail{
+#obj-manager-con > .object-detail {
 
 }
 
 #obj-manager-con > .object-list {
     padding: 5px;
+}
+
+#obj-manager-con > .object-list tr.active {
+    background-color: #153e53;
 }
 
 #debug-con {

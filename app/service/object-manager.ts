@@ -18,6 +18,9 @@ module App.Services {
         // counter for generate id
         private counter:number = 0;
 
+        // cursor
+        public currentObject = null;
+
         // temp vars
         private tempPoints:Array<Circle> = [];
 
@@ -84,6 +87,7 @@ module App.Services {
 
         public activateObject(obj:any, canvas:Canvas) {
             this.logger.debug('[manager][activate] ' + obj._cad_name);
+            this.currentObject = obj;
             this.$rootScope.$broadcast('object.activate', obj);
         }
     }
