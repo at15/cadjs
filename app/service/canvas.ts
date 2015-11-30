@@ -1,5 +1,6 @@
 module App.Services {
     import Logger = App.Services.Logger;
+    import ICanvas = fabric.ICanvas;
     export class Canvas {
         static $inject = ['Logger'];
 
@@ -8,6 +9,9 @@ module App.Services {
         //private paperId = "paper";
         //private paperWidth = 500;
         //private paperHeight = 500;
+
+        private canvasId = "canvas";
+        private canvas:ICanvas;
 
         constructor(logger:Logger) {
             this.logger = logger;
@@ -18,6 +22,9 @@ module App.Services {
             //    this.paperWidth, this.paperHeight);
             //// TODO: check if the logger truly init
             //this.logger.log('paper init');
+
+            this.canvas = new fabric.Canvas(this.canvasId);
+            this.logger.log('canvas init');
         }
 
     }
