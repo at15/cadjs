@@ -3,4 +3,5 @@
  */
 //import $ = require('jquery');
 //import angular = require('angular');
-angular.module('cad', []);
+
+angular.module('cad',[]);

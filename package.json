@@ -10,6 +10,7 @@
   },
   "scripts": {
     "webpack": "webpack",
-    "watch": "webpack --progress --colors --watch"
+    "watch": "webpack --progress --colors --watch",
+    "tsc": "tsc"
   }
 }
