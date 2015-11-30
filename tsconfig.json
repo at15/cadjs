@@ -5,8 +5,10 @@
   },
   "files": [
     "app/service/logger.ts",
+    "app/service/canvas.ts",
     "app/ctrl/debug-ctrl.ts",
     "app/ctrl/obj-manager-ctrl.ts",
+    "app/ctrl/canvas-ctrl.ts",
     "app/app.ts",
     "typings/tsd.d.ts"
   ]
