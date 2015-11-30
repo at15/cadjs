@@ -3,24 +3,20 @@
  */
 module App.Controllers {
     import Logger = App.Services.Logger;
-    export class DebugCtrl {
-        public title = 'debug';
+    export class ObjManagerCtrl {
+
+        public title = 'object manager';
         public filterWord = '';
-        public logs = [];
-        private logger : Logger;
+        public objects = ['a', 'b', 'c'];
+
+        private logger:Logger;
 
         static $inject = ['Logger'];
 
         constructor(logger:Logger) {
             console.log(logger.ping());
             this.logger = logger;
-            this.logs = logger.data;
-
-            this.logger.log('debug ctrl init');
-        }
-
-        public clear() {
-            this.logger.clear();
+            this.logger.log('object manager init ');
         }
     }
 }

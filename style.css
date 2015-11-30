@@ -4,16 +4,33 @@ body {
 
 #canvas-con {
     float: left;
+    margin-right: 5px;
 
     width: 500px;
     height: 500px;
 
     border: 1px solid #aaa;
-    background-color: black;
+    background-color: #535353;
 }
 
 #debug-con {
     float: left;
+    margin-right: 5px;
+
+    width: 300px;
+    height: 500px;
+
+    padding: 5px;
+
+    overflow: auto;
+
+    color: #cfcfcf;
+    background-color: #071f27;
+}
+
+#obj-manager-con {
+    float: left;
+    margin-right: 5px;
 
     width: 300px;
     height: 500px;
