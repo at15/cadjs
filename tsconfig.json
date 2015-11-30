@@ -4,6 +4,7 @@
     "out": "build/bundle-ts.js"
   },
   "files": [
+    "lib/ctrl/debug-ctrl.ts",
     "lib/app.ts",
     "typings/tsd.d.ts"
   ]

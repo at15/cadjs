@@ -10,14 +10,19 @@
 
 </div>
 
+<!-- the object manager -->
 <div>
 
 </div>
 
-<div ng-controller="ConsoleCtrl as console">
-    <button ng-click="console.click()">click me</button>
-    <div ng-repeat="log in console.logs track by $index" ng-bind="log"></div>
+<div ng-controller="DebugCtrl as debug">
+
 </div>
+
+<!--<div ng-controller="ConsoleCtrl as console">-->
+<!--<button ng-click="console.click()">click me</button>-->
+<!--<div ng-repeat="log in console.logs track by $index" ng-bind="log"></div>-->
+<!--</div>-->
 
 <!-- load all the scripts here -->
 <script type="text/javascript" src="vendor/raphael.js" charset="utf-8"></script>
