@@ -16,13 +16,13 @@ module App.Services {
 
         public ping() {
             this.pingCount++;
+            this.log('[ping]' + this.pingCount.toString());
             return "pong " + this.pingCount.toString();
         }
 
         private log(msg:string) {
-            var me = this;
-            this.$rootScope.safeApply(function () {
-                me.data.push(msg);
+            this.$rootScope.safeApply(() => {
+                this.data.push(msg);
             });
         }
 

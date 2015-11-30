@@ -18,15 +18,13 @@ module App.Controllers {
         constructor(logger:Logger, manager:ObjectManager, $scope:ng.IScope) {
             console.log(logger.ping());
 
-            var me = this;
-
             this.logger = logger;
             this.manager = manager;
             this.$scope = $scope;
             this.objects = this.manager.objects;
 
-            this.$scope.$on('object.activate', function (event:ng.IAngularEvent, obj:any) {
-                me.objectActivateHandler(obj);
+            this.$scope.$on('object.activate', (event:ng.IAngularEvent, obj:any) => {
+                this.objectActivateHandler(obj);
             });
 
 
@@ -36,12 +34,6 @@ module App.Controllers {
         }
 
         public objectActivateHandler(obj:any) {
-            ////console.log('got obj!', obj);
-            //var me = this;
-            //this.$scope.$apply(function () {
-            //    me.active = obj;
-            //});
-            ////console.log(arguments);
             this.active = obj;
         }
     }

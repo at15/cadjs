@@ -29,7 +29,6 @@ module App.Services {
         private currentPolygon:Polygon;
 
         constructor(logger:Logger, manager:ObjectManager) {
-            var me = this;
             this.logger = logger;
             this.logger.info('canvas service initializing ... ');
 
@@ -40,14 +39,13 @@ module App.Services {
                 {width: this.canvasWidth, height: this.canvasHeight});
             this.logger.info('canvas created ');
 
-            // TODO: use lamda () => {}
             // bind all the even handle here, need have a wrapper to allow use real this
-            this.canvas.on('mouse:down', function (options) {
-                me.mouseDownHandler(options);
+            this.canvas.on('mouse:down', (options) => {
+                this.mouseDownHandler(options);
             });
             // handle object select, show detail in object manager
-            this.canvas.on('object:selected', function (e) {
-                me.objectSelectHandler(e);
+            this.canvas.on('object:selected', (e) => {
+                this.objectSelectHandler(e);
             });
         }
 
