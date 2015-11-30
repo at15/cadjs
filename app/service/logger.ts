@@ -18,11 +18,19 @@ module App.Services {
             return "pong " + this.pingCount.toString();
         }
 
-        public log(msg:string) {
+        private log(msg:string) {
             var me = this;
             this.$rootScope.safeApply(function () {
                 me.data.push(msg);
             });
+        }
+
+        public info(msg:string):void {
+            this.log('[info] ' + msg);
+        }
+
+        public debug(msg:string):void {
+            this.log('[debug] ' + msg);
         }
 
         public clear() {

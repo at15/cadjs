@@ -18,7 +18,7 @@ module App.Controllers {
             this.logger = logger;
             this.manager = manager;
             this.objects = this.manager.objects;
-            this.logger.log('object manager ctrl init ');
+            this.logger.info('object manager ctrl init ');
         }
     }
 }

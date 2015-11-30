@@ -16,7 +16,7 @@ module App.Controllers {
             this.logger = logger;
             this.logs = logger.data;
 
-            this.logger.log('debug ctrl init');
+            this.logger.info('debug ctrl init');
         }
 
         public clear() {

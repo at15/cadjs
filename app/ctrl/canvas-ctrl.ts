@@ -13,7 +13,7 @@ module App.Controllers {
         constructor(logger:Logger, canvas:Canvas) {
             this.canvas = canvas;
             this.logger = logger;
-            this.logger.log('canvas ctrl init');
+            this.logger.info('canvas ctrl init');
 
             // create a rectangle object
             var rect = new fabric.Rect({

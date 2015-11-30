@@ -21,14 +21,14 @@ module App.Services {
         constructor(logger:Logger, manager:ObjectManager) {
             var me = this;
             this.logger = logger;
-            this.logger.log('canvas service initializing ... ');
+            this.logger.info('canvas service initializing ... ');
 
             this.manager = manager;
             console.log(manager);
 
             this.canvas = new fabric.Canvas(this.canvasId,
                 {width: this.canvasWidth, height: this.canvasHeight});
-            this.logger.log('canvas created ');
+            this.logger.info('canvas created ');
 
             // bind all the even handle here, need have a wrapper to allow use real this
             this.canvas.on('mouse:down', function (options) {
@@ -62,6 +62,7 @@ module App.Services {
 
             var target = options.e;
             // target.x, target.y
+            this.logger.debug('x:' + target.x + ' y:' + target.y);
         }
 
     }
