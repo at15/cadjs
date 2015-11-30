@@ -24,7 +24,7 @@ module Cad {
         }
 
         public getPreviousPoint():Point {
-            if(this.points.length < 2){
+            if (this.points.length < 2) {
                 return null;
             }
             return this.points[this.points.length - 2];
@@ -32,6 +32,10 @@ module Cad {
 
         public getFirstPoint():Point {
             return this.points[0];
+        }
+
+        public getLastPoint():Point {
+            return this.points[this.points.length - 1];
         }
     }
 }

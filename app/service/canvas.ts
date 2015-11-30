@@ -76,6 +76,10 @@ module App.Services {
         }
 
         public stopPolygon() {
+            // draw last point
+            // TODO: should through error when it is not a polygon
+            this.makeLine(this.currentPolygon.getLastPoint(), this.currentPolygon.getFirstPoint());
+            // do the clean up
             this.stopDrawing();
             this.drawingPolygon = false;
             this.cleanTempPoints();
@@ -90,6 +94,7 @@ module App.Services {
             this.manager.cleanTemp();
         }
 
+        // TODO: move it to object manager
         protected makeLine(start:Point, end:Point) {
             var line = new fabric.Line([
                 start.x,

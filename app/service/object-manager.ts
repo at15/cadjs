@@ -40,6 +40,7 @@ module App.Services {
         }
 
         public createTempCircle(point:Point):ICircle {
+            // TODO: set the color for the previous temp point
             var c = new fabric.Circle({
                 left: point.x - 5,
                 top: point.y - 5,
