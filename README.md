@@ -1,6 +1,7 @@
 # cadjs
 
-A 2d cad model library built on top of raphael.js
+A 2d cad modeling application built on top of [fabric.js](http://fabricjs.com/) and 
+angularjs using typescript
 
 live demo http://at15.github.io/cadjs/ click start polygon on bottom left to start drawing and 
 click stop polygon when you finish
