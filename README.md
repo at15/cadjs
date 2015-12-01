@@ -2,6 +2,9 @@
 
 A 2d cad model library built on top of raphael.js
 
+live demo http://at15.github.io/cadjs/ click start polygon on bottom left to start drawing and 
+click stop polygon when you finish
+
 ## Features 
 
 - wrap for fabric.js element and hack to get standard object to use in cad, like point, line
