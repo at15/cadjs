@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>cad js</title>
+</head>
+<body ng-app="cad">
+<!-- show cursor here -->
+<div id="canvas-con" ng-controller="CanvasCtrl as canvas">
+    <canvas id="canvas">
+    </canvas>
+    <div class="tool-bar">
+        <!--<button ng-click="canvas.startDraw()">start</button>-->
+        <!--<button ng-click="canvas.stopDraw()">stop</button>-->
+        <button ng-click="canvas.startPolygon()">start polygon</button>
+        <button ng-click="canvas.stopPolygon()">stop polygon</button>
+    </div>
+</div>
+
+<!-- the object manager -->
+<div id="obj-manager-con" ng-controller="ObjectManagerCtrl as manager">
+    <div>Object manager</div>
+    <div class="object-detail">
+        <div>current object</div>
+        <table>
+            <tr>
+                <td>key</td>
+                <td>value</td>
+            </tr>
+            <tr>
+                <td>name</td>
+                <td>{{manager.active._cad_name}}</td>
+            </tr>
+            <tr>
+                <td>type</td>
+                <td>{{manager.active._cad_type}}</td>
+            </tr>
+        </table>
+    </div>
+    <div>All Objects</div>
+
+    <table class="object-list">
+        <tr>
+            <td>name</td>
+            <td>type</td>
+            <td>active</td>
+        </tr>
+        <tr ng-repeat="obj in manager.objects track by $index"
+            ng-class="{active:manager.active._cad_name==obj._cad_name}">
+            <td ng-bind="obj._cad_name"></td>
+            <td ng-bind="obj._cad_type"></td>
+            <td>{{manager.active._cad_name==obj._cad_name}}</td>
+        </tr>
+    </table>
+    <div>
+
+    </div>
+</div>
+
+<div id="debug-con" ng-controller="DebugCtrl as debug">
+    <!--<button ng-click="debug.ping()">ping</button>-->
+    <!--{{debug.title}}-->
+    <div>
+        <button ng-click="debug.clear()">clear</button>
+        <label for="filter">filter</label>
+        <input type="text" ng-model="debug.filterWord" id="filter">
+    </div>
+
+    <!--{{debug.filterWord}}-->
+    <!--{{debug.logs}}-->
+
+    <div ng-repeat="log in debug.logs | filter:debug.filterWord track by $index " ng-bind="log"></div>
+</div>
+
+<!-- load all the scripts here -->
+<!--<script type="text/javascript" src="vendor/raphael.js" charset="utf-8"></script>-->
+<script type="text/javascript" src="vendor/fabric.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="vendor/jquery-2.1.4.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="vendor/angular.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="build/bundle.js" charset="utf-8"></script>
+</body>
+</html>
